@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html class ="ui-mobile">
+  <head>
+    <title>Device Properties Example</title>
+	<link rel="stylesheet" href="style/jquery.mobile-1.3.1.min.css">
+	<link rel="stylesheet" href="style/my.css">
+	<link rel="stylesheet" href="js/lib/jQplot/jquery.jqplot.min.css">    
+    
+    <style type="text/css">
+		  .myChart {
+		        width: 300px;
+		        height: 200px;
+		    } 
+	</style>
+    
+    <script type="text/javascript" charset="utf-8" src="cordova-2.6.0.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+    <script src="js/jquery-1.8.3.min.js"></script>
+     <script src="js/jquery.mobile-1.3.1.min.js"></script>
+     <script src="js/lib/jQplot/excanvas.min.js"></script>
+    <script src="js/lib/jQplot/jquery.jqplot.min.js"></script>
+    <script src="js/lib/jQplot/excanvas.min.js"></script>
+    <script type="text/javascript" src="js/SpeechRecognizer.js"></script>
+    <script type="text/javascript" src="js/lib/jQplot/plugins/jqplot.pieRenderer.min.js"></script>
+    
+    
+    <script>
+        function onSuccess(data, status)
+        {
+            console.log(data);
+            alert("sucess"+data);
+        }
+  
+        function onError(data, status)
+        {
+           	console.log(data);
+           	 alert("error"+data);
+        }        
+  
+        $(document).ready(function() {
+  
+                var formData ='';
+  
+                $.ajax({
+                    type: "GET",
+                    url: "http://172.16.7.132/my_projects/yii2dev/yii-blog-rest/",
+                    cache: false,
+                    data: formData,
+                    success: onSuccess,
+                    error: onError
+                });
+  
+                return false;
+        });
+    </script>
+    
+  </head>
+  <body>
+	<div data-role="page" data-control-title="Index" id="page1">
+	    <div data-theme="a" data-role="header" id="header1">
+	        <h3>
+	            Etsalat Customers
+	        </h3>
+	    </div>
+	    <a id="getListBtn" data-role="button" href="#page2" >
+           View Customers
+        </a>
+        <a id="getListBtn" data-role="button" href="#page3" >
+           Add Customer
+        </a>
+        <a id="exit" data-role="button" href="#" onclick="js:exit();">
+          Exit
+        </a>
+        <a id="exit" data-role="button" href="#" onclick="js:drawChart();">
+          Chart
+        </a>
+    
+        
+        <div id="chart"></div>
+   	</div>
+   	
+   	<div id="page2" data-control-title="customerView" data-role="page" data-url="page2">
+   		<div data-theme="a" data-role="header" id="header1">
+	        <h3>
+	            View Customers
+	        </h3>
+	        <a data-role="button" href="#page1" data-icon="arrow-l" data-iconpos="left" class="ui-btn-right">
+            	Back
+        	</a>
+	    </div>
+	    
+	     <br/>
+       <ul data-role="listview" data-divider-theme="b" data-inset="true" id="customers">
+          <li data-role="list-divider" role="heading">
+              Customers
+          </li>
+         
+        </ul>
+        <a id="getCustomers" data-role="button" href="#" onclick ="js:dataReady()">Fetch Data</a>
+	</div>
+	
+	
+	<div id="page3" data-control-title="customerAdd" data-role="page" data-url="page3">
+		<div data-theme="a" data-role="header" id="header1">
+	        <h3>
+	            Add Customers
+	        </h3>
+	        <a data-role="button" href="#page1" data-icon="arrow-l" data-iconpos="left" class="ui-btn-right">
+            	Back
+        	</a>
+	    </div>
+	    
+		<form action="">
+			<div data-role="fieldcontain" data-controltype="textinput">
+			    <label for="textinput1">
+			        Name
+			    </label>
+			    <input name="" id="name" placeholder="" value="" type="text">
+			</div>
+			<div data-role="fieldcontain" data-controltype="textinput">
+			    <label for="textinput2">
+			        MSISDN
+			    </label>
+			    <input name="" id="msisdn" placeholder="" value="" type="text" maxlength="7">
+			</div>
+		</form>
+		<a id="addCustomers" data-role="button" href="#" onclick="js:addCustomer()">Add Data</a>
+	</div>
+	
+	<div id="page4" data-control-title="Customers" data-role="page" data-url="page4">
+		<div data-theme="a" data-role="header" id="header1">
+	        <h3 id="Customer_name">
+	           
+	        </h3>
+	        <a data-role="button" href="#page2" data-icon="arrow-l" data-iconpos="left" class="ui-btn-right">
+            	Back
+        	</a>
+	    </div>
+	   
+	</div>
+	
+   </body>
+</html>
