@@ -20,5 +20,7 @@ public class MainActivity extends DroidGap {
 //		getMenuInflater().inflate(R.menu.main, menu);
 //		return true;
 //	}
+	
+	//
 
 }
